@@ -14,21 +14,27 @@ use App\Http\Middleware\LogAcessoMiddleware;
 */
 
 Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
-Route::get('/contato', [App\Http\Controllers\contato::class, 'contato']);
+Route::get('/somar/{p1}/{p2}', [App\Http\Controllers\Principal::class, 'principal']);
+Route::get('/subtrair{p1}/{p2}', [App\Http\Controllers\Principal::class, 'principal']);
+Route::get('/multiplicar{p1}/{p2}', [App\Http\Controllers\Principal::class, 'principal']);
+Route::get('/divisir{p1}/{p2}', [App\Http\Controllers\Principal::class, 'principal']);
+// Route::get('/contato', [App\Http\Controllers\contato::class, 'contato']);
+
+Route::get('/Produto/listar', [App\Http\Controllers\Produto::class, 'listar']);
 
 // aluno
-Route::get('/boletim', [App\Http\Controllers\boletim::class, 'boletim']);
-Route::get('/horarios', [App\Http\Controllers\horarios::class, 'horarios']);
-Route::get('/presença', [App\Http\Controllers\presença::class, 'presença']);
-Route::get('/grade_curricular', [App\Http\Controllers\grade_curricular::class, 'grade_curricular']);
-Route::get('/progressao_parcial', [App\Http\Controllers\progressao_parcial::class, 'progressao_parcial']);
-Route::get('/horas_de_curso', [App\Http\Controllers\horas_de_curso::class, 'horas_de_curso']);
+// Route::get('/boletim', [App\Http\Controllers\boletim::class, 'boletim']);
+// Route::get('/horarios', [App\Http\Controllers\horarios::class, 'horarios']);
+// Route::get('/presença', [App\Http\Controllers\presença::class, 'presença']);
+// Route::get('/grade_curricular', [App\Http\Controllers\grade_curricular::class, 'grade_curricular']);
+// Route::get('/progressao_parcial', [App\Http\Controllers\progressao_parcial::class, 'progressao_parcial']);
+// Route::get('/horas_de_curso', [App\Http\Controllers\horas_de_curso::class, 'horas_de_curso']);
 
 // professor
-Route::get('/ocorrencias', [App\Http\Controllers\ocorrencias::class, 'ocorrencias']);
-Route::get('/chamada', [App\Http\Controllers\chamada::class, 'chamada']);
-Route::get('/salas', [App\Http\Controllers\salas::class, 'salas']);
-Route::get('/suporte', [App\Http\Controllers\suporte::class, 'suporte']);
+// Route::get('/ocorrencias', [App\Http\Controllers\ocorrencias::class, 'ocorrencias']);
+// Route::get('/chamada', [App\Http\Controllers\chamada::class, 'chamada']);
+// Route::get('/salas', [App\Http\Controllers\salas::class, 'salas']);
+// Route::get('/suporte', [App\Http\Controllers\suporte::class, 'suporte']);
 
 
 
