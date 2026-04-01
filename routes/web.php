@@ -14,21 +14,13 @@ use App\Http\Middleware\LogAcessoMiddleware;
 */
 
 Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
-Route::get('/contato', [App\Http\Controllers\contato::class, 'contato']);
 
-// aluno
-Route::get('/boletim', [App\Http\Controllers\boletim::class, 'boletim']);
-Route::get('/horarios', [App\Http\Controllers\horarios::class, 'horarios']);
-Route::get('/presença', [App\Http\Controllers\presença::class, 'presença']);
-Route::get('/grade_curricular', [App\Http\Controllers\grade_curricular::class, 'grade_curricular']);
-Route::get('/progressao_parcial', [App\Http\Controllers\progressao_parcial::class, 'progressao_parcial']);
-Route::get('/horas_de_curso', [App\Http\Controllers\horas_de_curso::class, 'horas_de_curso']);
+Route::get('/aluno/add/{nome}/{telefone}/{email}', [App\Http\Controllers\Aluno::class, 'principal'])->name('aluno.add');;
 
-// professor
-Route::get('/ocorrencias', [App\Http\Controllers\ocorrencias::class, 'ocorrencias']);
-Route::get('/chamada', [App\Http\Controllers\chamada::class, 'chamada']);
-Route::get('/salas', [App\Http\Controllers\salas::class, 'salas']);
-Route::get('/suporte', [App\Http\Controllers\suporte::class, 'suporte']);
+Route::get('/aluno/listar', [App\Http\Controllers\Aluno::class, 'show'])->name('aluno.show');
+Route::get('/professor/listar', [App\Http\Controllers\Professor::class, 'show'])->name('professor.show');
+Route::get('/curso/listar', [App\Http\Controllers\Curso::class, 'show'])->name('curso.show');
+Route::get('/componente/listar', [App\Http\Controllers\Componentes::class, 'show'])->name('componente.show');
 
 
 
