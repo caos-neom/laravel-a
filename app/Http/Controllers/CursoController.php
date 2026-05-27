@@ -13,5 +13,12 @@ class CursoController extends Controller
     function add(Request $dados) { 
         $curso = new \App\Models\CursoModel();
         $curso::create($dados->all());
+
+        $cursos = new \App\Models\CursoModel();
+
+    return view('curso.index', ['success'=>'Cadastrado!', 'cursos'=>$cursos::all()]);
+
     }
-}
+
+    }
+
