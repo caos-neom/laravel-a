@@ -28,7 +28,9 @@
                             </form>
                         </td>    
                         <td>
-                            <button>atualizar</button>
+                        <form action="{{ route('aluno.atualizar', ['id' => $aluno->id]) }}" method="GET">
+                                <button type="submit">Atualizar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
