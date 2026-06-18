@@ -18,7 +18,7 @@ class ComponenteController extends Controller
     
     //RECUPERANDO TODOS componenteS DO BANCO E ENVIANDO PARA A VIEW
 				
-    $componentes = new \App\Models\ComponenteModel();
+        $componentes = new \App\Models\ComponenteModel();
 
     return view('componente.index', ['success'=>'Cadastrado!', 'componentes'=>$componentes::all()]);
 
