@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComponenteController extends Controller
 {
@@ -17,12 +18,23 @@ class ComponenteController extends Controller
 		      $dados->all(),
 	            [
 	                'nome' => 'required|min:3|max:255',
+                    'hora_inicio' => 'required|min:3|max:255',
+                    'hora_fim' => 'required|min:3|max:255',
 	            ],
 	            [
 	                'nome.required' => 'O campo nome é obrigatório.',
 	                'nome.min' => 'O campo nome deve conter no mínimo 3 caracteres.',
 	                'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+
+                    'hora_inicio.required' => 'O campo hora_inicio é obrigatório.',
+	                'hora_inicio.min' => 'O campo hora_inicio deve conter no mínimo 3 caracteres.',
+	                'hora_inicio.max' => 'O campo hora_inicio deve conter no máximo 255 caracteres.',
+
+                    'hora_fim.required' => 'O campo hora_fim é obrigatório.',
+	                'hora_fim.min' => 'O campo hora_fim deve conter no mínimo 3 caracteres.',
+	                'hora_fim.max' => 'O campo hora_fim deve conter no máximo 255 caracteres.',
 	            ]
+
         );
 
         if ($validator->fails()) {
@@ -32,11 +44,11 @@ class ComponenteController extends Controller
                 ->withInput();
         }
 
-        $componente = new \App\Models\componenteModel();
+        $componente = new \App\Models\ComponenteModel();
         $componente::create($dados->all());
 
         //RECUPERANDO TODOS componenteS DO BANCO E ENVIANDO PARA A VIEW
-        $componentes = new \App\Models\componenteModel();
+        $componentes = new \App\Models\ComponenteModel();
 
         return view('componente.index', ['success'=>'Cadastrado!', 'componentes'=>$componentes::all()]);
     }

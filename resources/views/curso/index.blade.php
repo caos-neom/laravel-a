@@ -2,14 +2,22 @@
     <!-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Marie Curie -->
 
     <form action="{{ route('curso.add') }}" method="post">
+    <input type="text" name="nome" id="nome" value="{{ old('nome') }}">
+    <input type="text" name="nome" id="periodo" value="{{ old('periodo') }}">
         @csrf
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome">
-
-        <label for="periodo">Periodo</label>
-        <input type="text" name="periodo" id="periodo">
-
+        
         <button type="submit">Salvar</button>
+        @isset($success)
+            <h1>{{ $success }}</h1>
+        @endisset
+        @if($errors->any())
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+    </form>
     </form>
 
 
