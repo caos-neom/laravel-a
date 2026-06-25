@@ -13,15 +13,32 @@ class ComponenteController extends Controller
     }
 
     function add(Request $dados) { 
-        $componente = new \App\Models\ComponenteModel();
+        $validator = Validator::make(
+		      $dados->all(),
+	            [
+	                'nome' => 'required|min:3|max:255',
+	            ],
+	            [
+	                'nome.required' => 'O campo nome é obrigatório.',
+	                'nome.min' => 'O campo nome deve conter no mínimo 3 caracteres.',
+	                'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+	            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('componente.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $componente = new \App\Models\componenteModel();
         $componente::create($dados->all());
-    
-    //RECUPERANDO TODOS componenteS DO BANCO E ENVIANDO PARA A VIEW
-				
-        $componentes = new \App\Models\ComponenteModel();
 
-    return view('componente.index', ['success'=>'Cadastrado!', 'componentes'=>$componentes::all()]);
+        //RECUPERANDO TODOS componenteS DO BANCO E ENVIANDO PARA A VIEW
+        $componentes = new \App\Models\componenteModel();
 
+        return view('componente.index', ['success'=>'Cadastrado!', 'componentes'=>$componentes::all()]);
     }
 
     function remove(string $id) {
