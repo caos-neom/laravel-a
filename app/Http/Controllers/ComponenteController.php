@@ -18,8 +18,8 @@ class ComponenteController extends Controller
 		      $dados->all(),
 	            [
 	                'nome' => 'required|min:3|max:255',
-                    'hora_inicio' => 'required|min:3|max:255',
-                    'hora_fim' => 'required|min:3|max:255',
+                    'hora_inicio' => 'required',
+                    'hora_fim' => 'required',
 	            ],
 	            [
 	                'nome.required' => 'O campo nome é obrigatório.',
@@ -27,12 +27,8 @@ class ComponenteController extends Controller
 	                'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
 
                     'hora_inicio.required' => 'O campo hora_inicio é obrigatório.',
-	                'hora_inicio.min' => 'O campo hora_inicio deve conter no mínimo 3 caracteres.',
-	                'hora_inicio.max' => 'O campo hora_inicio deve conter no máximo 255 caracteres.',
 
                     'hora_fim.required' => 'O campo hora_fim é obrigatório.',
-	                'hora_fim.min' => 'O campo hora_fim deve conter no mínimo 3 caracteres.',
-	                'hora_fim.max' => 'O campo hora_fim deve conter no máximo 255 caracteres.',
 	            ]
 
         );

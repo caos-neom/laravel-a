@@ -1,26 +1,54 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
 {
-    function index(){ 
+        function index(){ 
         $professor = new \App\Models\ProfessorModel();
 
-        return view('professor.index', ['professors'=>$professor::all()]);
+        return view('professor.index', ['professores'=>$professor::all()]);
     }
 
     function add(Request $dados) { 
+        $validator = Validator::make(
+		      $dados->all(),
+	            [
+	                'nome' => 'required|min:3|max:255',
+                    'email' => 'required|min:3|max:255',
+                    'telefone' => 'required|min:11|max:11',
+	            ],
+	            [
+	                'nome.required' => 'O campo nome é obrigatório.',
+	                'nome.min' => 'O campo nome deve conter no mínimo 3 caracteres.',
+	                'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+
+	                'email.required' => 'O campo email é obrigatório.',
+	                'email.min' => 'O campo email deve conter no mínimo 3 caracteres.',
+	                'email.max' => 'O campo email deve conter no máximo 255 caracteres.',
+
+                     'telefone.required' => 'O campo telefone é obrigatório.',
+	                'telefone.min' => 'O campo telefone deve conter no mínimo 11 caracteres.',
+	                'telefone.max' => 'O campo telefone deve conter no máximo 11 caracteres.',
+	            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('professor.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $professor = new \App\Models\ProfessorModel();
         $professor::create($dados->all());
-    
+
+        //RECUPERANDO TODOS professoreS DO BANCO E ENVIANDO PARA A VIEW
         $professores = new \App\Models\ProfessorModel();
 
         return view('professor.index', ['success'=>'Cadastrado!', 'professores'=>$professores::all()]);
-    
-
     }
 
     function remove(string $id) {
